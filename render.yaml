@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: privacy-news-classifier-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: HF_HUB_DISABLE_XET
+        value: "1"
+      - key: ALLOWED_ORIGINS
+        sync: false
